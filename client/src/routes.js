@@ -6,7 +6,7 @@ import Weather from './components/Weather.vue'
 import Locations from './components/Locations.vue'
 import Users from './components/Users.vue'
 import Reports from './components/Reports.vue'
-import Error from './components/404.vue'
+import Wrong from './components/Wrong.vue'
 
 Vue.use(Router)
 
