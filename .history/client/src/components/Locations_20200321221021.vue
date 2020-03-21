@@ -114,6 +114,7 @@ export default {
         this.error = error.response.data.error
       } finally {
         this.$forceUpdate()
+        this.$route.go(0)
         this.render += 1
       }
     },

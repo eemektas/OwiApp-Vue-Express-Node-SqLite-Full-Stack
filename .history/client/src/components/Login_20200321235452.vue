@@ -5,18 +5,18 @@
     fluid>
     <v-layout column mt-10>
       <br>
-      <h1>Register</h1>
+      <h1>Login</h1>
       <div class="text-xs-center">
         <v-flex xs6 offset-xs3>
-          <v-expansion-panel>
             <v-form
               ref="form"
-              name="owi-form">
-              <v-text-field class="mt-10"
+              name="owi-form"
+              autocomplete="off">
+              <v-text-field
                 dark
+                class="mt-10"
                 label="Username"
                 v-model="username">
-                autocomplete="off"
               </v-text-field>
               <v-text-field
                 dark
@@ -31,10 +31,10 @@
               dark
               x-large
               class="dark mt-10"
-              @click="register">
-              Register
+              @click="login"
+              >
+              Login
             </v-btn>
-          </v-expansion-panel>
         </v-flex>
       </div>
     </v-layout>
@@ -52,15 +52,19 @@ export default {
     }
   },
   methods: {
-    async register () {
+    async login () {
       try {
-        const response = await AuthService.register({
+        const response = await AuthService.login({
           username: this.username,
           password: this.password
         })
+        const token = response.data.token
+        console.log(token)
         this.$store.dispatch('setToken', response.data.token)
         this.$store.dispatch('setUser', response.data.user)
-        this.$router.push('Login')
+        if (this.$store.state.isUserLoggedIn) {
+          this.$router.push("Weather")
+        }
       } catch (error) {
         this.error = error.response.data.error
       }
@@ -70,4 +74,11 @@ export default {
 </script>
 
 <style scoped>
+.error {
+  color: red;
+}
+
+h1 {
+  color: white;
+}
 </style>
