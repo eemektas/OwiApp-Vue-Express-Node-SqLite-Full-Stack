@@ -43,13 +43,13 @@ export default new Router({
       name: 'Reports'
     },
     {
-      path: '*',
+      path: '*' || '/#' || '/' || '/#/',
       redirect: 'Login'
+    },
+    {
+      path: '/404',
+      component: Error,
+      name: '404'
     }
-    // {
-    //   path: '/404',
-    //   component: Error,
-    //   name: '404'
-    // }
   ]
 })

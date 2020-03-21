@@ -43,7 +43,7 @@ export default new Router({
       name: 'Reports'
     },
     {
-      path: '*',
+      path: '*' || '/#' || '/' || '/#/',
       redirect: 'Login'
     }
     // {

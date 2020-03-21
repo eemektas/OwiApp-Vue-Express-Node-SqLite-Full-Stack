@@ -28,7 +28,7 @@ export default new Router({
       name: 'Weather'
     },
     {
-      path: '/locations',
+      path: '/locations'
       component: Locations,
       name: 'Locations'
     },
@@ -43,13 +43,13 @@ export default new Router({
       name: 'Reports'
     },
     {
-      path: '*',
+      path: '/404',
+      component: Error,
+      name: '404'
+    },
+    {
+      path: '*' || '/#',
       redirect: 'Login'
     }
-    // {
-    //   path: '/404',
-    //   component: Error,
-    //   name: '404'
-    // }
   ]
 })
