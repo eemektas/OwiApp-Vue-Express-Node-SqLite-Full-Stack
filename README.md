@@ -4,7 +4,7 @@ Online Weather Inquiry - An elementary weather app works with OpenWeatherMap
 
 ## For using the OwiApp
 
-- [fa-gear:] 1. Pull the repository to your environment
+- [ ] :fa-gear: 1. Pull the repository to your environment
  
  `$ git clone https://github.com/eemektas/OwiApp-Vue-Express-Node-SqLite-Full-Stack.git`  or download at -> https://github.com/eemektas/OwiApp-Vue-Express-Node-SqLite-Full-Stack
  
