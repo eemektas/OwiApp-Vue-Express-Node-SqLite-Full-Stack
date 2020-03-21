@@ -1,6 +1,6 @@
 <template>
 <div class="NotFound">
-  <v-container>
+  <!-- <v-container>
     <v-layout row wrap>
       <v-flex xs12>
         <v-card height="400" color="transparent" flat>
@@ -12,12 +12,12 @@
           <div class="paragraph-text mt-2">
             <br />
             <br />Try going back to home page and repeating your action. Or,
-            contact helpdesk for support.
+            contact me for support.
           </div>
         </v-card>
       </v-flex>
     </v-layout>
-  </v-container>
+  </v-container> -->
 </div>
 </template>
 
