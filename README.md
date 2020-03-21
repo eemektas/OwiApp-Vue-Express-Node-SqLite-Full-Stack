@@ -10,7 +10,7 @@ Online Weather Inquiry - An elementary weather app works with OpenWeatherMap
   
    or download @ https://github.com/eemektas/OwiApp-Vue-Express-Node-SqLite-Full-Stack
  
-- **2.** Go **OwiApp-Vue-Express-Node-SqLite-Full-Stack** in your terminal then open server folder and install server node modules with npm command. After the installation, launch the server by npm start command.
+- **2.** Go **OwiApp-Vue-Express-Node-SqLite-Full-Stack** in your terminal and then, open server folder and install server node modules with npm command. After the installation, launch the server by npm start command.
   
   `$ cd path/to/OwiApp-Vue-Express-Node-SqLite-Full-Stack/server`
     
