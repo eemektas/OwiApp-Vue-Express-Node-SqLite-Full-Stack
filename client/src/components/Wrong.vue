@@ -1,5 +1,6 @@
 <template>
 <div class="NotFound">
+  <h1>Welcome</h1>
   <!-- <v-container>
     <v-layout row wrap>
       <v-flex xs12>
