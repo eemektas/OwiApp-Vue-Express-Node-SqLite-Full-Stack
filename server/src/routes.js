@@ -18,8 +18,8 @@ module.exports = (app) => {
   app.post('/locations',
     LocationController.post)
 
-  app.post('/weather',
-    WeatherController.post) 
+  app.get('/weather',
+    WeatherController.getWeather) 
 
   // app.get('/weather',
   //   WeatherController.index)
