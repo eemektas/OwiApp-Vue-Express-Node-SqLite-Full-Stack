@@ -2,7 +2,7 @@ const { Weather } = require('../models')
 const fetch = require('node-fetch')
 
 module.exports = {
-  async post (req, res) {
+  async getWeather (req, res) {
     try {
       const api = 'bd091ec8d79ff89eba0e2ab15f980531';
       const city = await req.body.city
