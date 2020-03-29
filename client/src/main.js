@@ -7,11 +7,19 @@ import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 import { sync } from 'vuex-router-sync'
 import store from './store/store'
+import * as VueGoogleMaps from 'vue2-google-maps'
 
 const vuetifyOptions = { }
 
 Vue.config.productionTip = false
 Vue.use(Vuetify)
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: 'AIzaSyAE6ewOg7I56rrgSwdQUr0ymOUCynwA-sg',
+    libraries: 'places'
+  },
+  installComponents: true
+})
 
 sync(store, router)
 
