@@ -17,6 +17,7 @@ module.exports = {
     try {
       const location = await Location.create(req.body)
       res.send(location)
+      console.log('loca', location)
     } catch (err) {
       res.status(500).send({
         error: 'Location already exists. Try to add another one.'
@@ -27,12 +28,14 @@ module.exports = {
     try {
       await location.update(req.body, {
         where: {
-          id: req.place.city
+          id: req.params.locId
         }
       })
       res.send(req.body)
     } catch (err) {
-      res.send(err)
+      res.status(500).send({
+        error: 'An error has occured trying to update the location'
+      })
     }
   }
 }

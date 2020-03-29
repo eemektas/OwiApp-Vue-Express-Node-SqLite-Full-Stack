@@ -27,12 +27,14 @@ module.exports = {
     try {
       await location.update(req.body, {
         where: {
-          id: req.place.city
+          id: req.params.locId
         }
       })
       res.send(req.body)
     } catch (err) {
-      res.send(err)
+      res.status(500).send({
+        error: 'An error has occured trying to update the location'
+      })
     }
   }
 }

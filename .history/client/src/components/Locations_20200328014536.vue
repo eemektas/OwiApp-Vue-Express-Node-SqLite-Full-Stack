@@ -1,20 +1,19 @@
 <template>
   <div id="app">
-    <v-layout justify-center>
-      <v-flex xs10>
-        <br><br>
+    <v-layout>
+      <v-flex xs10 mt-10>
+        <br><br><br>
         <v-text-field
           dark
           placeholder="City"
           v-model="place.city"
           type="text"
-          class="centered-input"
-          @keypress.enter="create">
+          class="centered-input mt-3">
         </v-text-field>
-        <div class="danger-alert" v-html="error"/>
+        <div class="danger-alert" v-html="error" />
         <v-btn color="success"
           class="mt-5 mb-10"
-          @click="create">
+          @click="create()">
           Add
         </v-btn>
           <v-list dark
@@ -26,43 +25,43 @@
               v-for="place in locations"
               :key="place">
               <v-list-item-content>
-                <v-list-item-title>
-                  <v-container>
+                <v-list-item-title mt-5>
+                  <template>
                     <v-text-field
+                      class="ml-3 mb-5"
                       type="text"
                       :key="place.id"
-                      :readonly="(disabled + 1) % 2"
+                      :disabled="disabled % 2 == 0"
                       v-model="place.city">
-
-                      <template v-slot:append-outer>
-
-                          <v-btn
-                            small
-                            v-if="(disabled + 1) % 2"
-                            color="primary"
-                            :key="place.name"
-                            @click="edit">
-                            Edit
-                          </v-btn>
-
-                          <v-btn
-                            small
-                            v-if="disabled % 2"
-                            color="success"
-                            :key="place.id"
-                            v-on:click="save()">
-                            Save
-                          </v-btn>
-
-                          <v-btn
-                            small
-                            color="error"
-                            @click="del">
-                            Delete
-                          </v-btn>
-                      </template>
                     </v-text-field>
-                  </v-container>
+                  <v-layout row wrap justify-end>
+                    <v-flex shrink>
+                      <v-btn
+                        v-if="disabled % 2"
+                        small
+                        color="success"
+                        :key="place.id"
+                        v-on:click="save()">
+                        Save
+                      </v-btn>
+                      <v-btn
+                        v-if="(disabled + 1) % 2"
+                        small
+                        color="primary"
+                        :key="place.id"
+                        v-on:click="edit()">
+                        Edit
+                      </v-btn>
+                      <v-btn
+                        small
+                        color="error mr-5"
+                        :key="place.id"
+                        @click="del()">
+                        Delete
+                      </v-btn>
+                    </v-flex>
+                  </v-layout>
+                  </template>
                 </v-list-item-title>
               </v-list-item-content>
             </v-list-item>
@@ -95,7 +94,6 @@ export default {
       immediate: true,
       handler: async function () {
         this.locations = (await LocationService.index()).data
-        console.log('locss', this.locations)
       }
     }
   },

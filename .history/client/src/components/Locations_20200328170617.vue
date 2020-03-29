@@ -1,20 +1,19 @@
 <template>
   <div id="app">
-    <v-layout justify-center>
-      <v-flex xs10>
-        <br><br>
+    <v-layout>
+      <v-flex xs10 mt-10>
+        <br><br><br>
         <v-text-field
           dark
           placeholder="City"
           v-model="place.city"
           type="text"
-          class="centered-input"
-          @keypress.enter="create">
+          class="centered-input mt-3">
         </v-text-field>
         <div class="danger-alert" v-html="error"/>
         <v-btn color="success"
           class="mt-5 mb-10"
-          @click="create">
+          @click="create()">
           Add
         </v-btn>
           <v-list dark
@@ -26,43 +25,48 @@
               v-for="place in locations"
               :key="place">
               <v-list-item-content>
-                <v-list-item-title>
-                  <v-container>
-                    <v-text-field
-                      type="text"
-                      :key="place.id"
-                      :readonly="(disabled + 1) % 2"
-                      v-model="place.city">
+                <v-list-item-title mt-5>
+                                  <v-text-field
+                                    class="ma-1 "
+                                    type="text"
+                                    :key="place.id"
+                                    :disabled="disabled % 2 == 0"
+                                    v-model="place.city">
 
-                      <template v-slot:append-outer>
+                                    <template v-slot:append>
 
-                          <v-btn
-                            small
-                            v-if="(disabled + 1) % 2"
-                            color="primary"
-                            :key="place.name"
-                            @click="edit">
-                            Edit
-                          </v-btn>
+                                        <v-btn
+                                          medium
+                                          v-if="(disabled + 1) % 2"
+                                          color="primary"
+                                          class="ma-0"
+                                          @click="edit"
+                                          :key="place.name">
+                                          Edit
+                                        </v-btn>
 
-                          <v-btn
-                            small
-                            v-if="disabled % 2"
-                            color="success"
-                            :key="place.id"
-                            v-on:click="save()">
-                            Save
-                          </v-btn>
+                                        <v-btn
+                                          medium
+                                          v-if="disabled % 2"
+                                          small
+                                          color="success"
+                                          :key="place.id"
+                                          v-on:click="save()">
+                                          Save
+                                        </v-btn>
 
-                          <v-btn
-                            small
-                            color="error"
-                            @click="del">
-                            Delete
-                          </v-btn>
-                      </template>
-                    </v-text-field>
-                  </v-container>
+                                        <v-btn
+                                          medium
+                                          color="error"
+                                          class="ma-0"
+                                          @:click="del()">
+                                          Delete
+                                        </v-btn>
+                                      
+                                    </template>
+                                      
+                                  </v-text-field>
+                      
                 </v-list-item-title>
               </v-list-item-content>
             </v-list-item>
@@ -95,7 +99,6 @@ export default {
       immediate: true,
       handler: async function () {
         this.locations = (await LocationService.index()).data
-        console.log('locss', this.locations)
       }
     }
   },

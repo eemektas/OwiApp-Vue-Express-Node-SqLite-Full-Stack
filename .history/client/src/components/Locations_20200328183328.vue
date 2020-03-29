@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <v-layout justify-center>
+    <v-layout>
       <v-flex xs10>
-        <br><br>
+        <br><br><br>
         <v-text-field
           dark
           placeholder="City"
@@ -95,7 +95,6 @@ export default {
       immediate: true,
       handler: async function () {
         this.locations = (await LocationService.index()).data
-        console.log('locss', this.locations)
       }
     }
   },

@@ -95,7 +95,6 @@ export default {
       immediate: true,
       handler: async function () {
         this.locations = (await LocationService.index()).data
-        console.log('locss', this.locations)
       }
     }
   },

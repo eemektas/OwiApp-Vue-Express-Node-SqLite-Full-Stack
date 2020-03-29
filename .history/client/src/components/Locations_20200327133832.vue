@@ -1,0 +1,182 @@
+<template>
+  <div id="app">
+    <v-layout>
+      <v-flex xs10 mt-10>
+        <br><br><br>
+        <v-text-field
+          dark
+          placeholder="City"
+          v-model="place.city"
+          type="text"
+          class="centered-input mt-3">
+        </v-text-field>
+        <div class="danger-alert" v-html="error" />
+        <v-btn color="success"
+          class="mt-5 mb-10"
+          @click="create()">
+          Add
+        </v-btn>
+          <v-list dark
+            style="max-height: 550px; min-height: 50px"
+            class="overflow-y-auto"
+            v-repeat="tags">
+            <v-list-item
+              name="recur"
+              v-for="place in locations"
+              :key="place">
+              <v-list-item-content>
+                <v-list-item-title mt-5>
+                  <template>
+                    <v-text-field
+                      class="ml-3"
+                      type="text"
+                      :key="place.id"
+                      :disabled="disabled % 2 == 0"
+                      v-model="place.city">
+                    </v-text-field>
+                  <v-layout row wrap justify-end>
+                    <v-flex shrink>
+                      <v-btn
+                        v-if="disabled % 2"
+                        small
+                        color="success"
+                        :key="place.id"
+                        v-on:click="save()">
+                        Save
+                      </v-btn>
+                      <v-btn
+                        v-if="(disabled + 1) % 2"
+                        small
+                        color="primary"
+                        :key="place.id"
+                        v-on:click="edit()">
+                        Edit
+                      </v-btn>
+                      <v-btn
+                        small
+                        color="error mr-5"
+                        :key="place.id"
+                        @click="del()">
+                        Delete
+                      </v-btn>
+                    </v-flex>
+                  </v-layout>
+                  </template>
+                </v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list>
+      </v-flex>
+    </v-layout>
+  </div>
+</template>
+
+<script>
+import LocationService from '@/services/LocationService'
+export default {
+  name: 'Locations',
+  data () {
+    return {
+      locations: {},
+      place: {
+        id: null,
+        city: null
+      },
+      error: null,
+      disabled: 0,
+      render: 0
+    }
+  },
+  components: {
+    LocationService
+  },
+  watch: {
+    // '$route.query.search': {
+    //   immediate: true,
+    //   handler: async function () {
+    //     this.locations = (await LocationService.index()).data
+    //   }
+    // }
+  },
+  methods: {
+    async create () {
+      try {
+        if (this.place.city === null ||
+            this.place.city[0] === ' ' ||
+            this.place.lenght === 0) {
+          alert('Please provide a valid city name')
+          return
+        } else {
+          await LocationService.post(this.place)
+          this.locations = (await LocationService.index()).data
+          this.error = null
+        }
+      } catch (error) {
+        this.error = error.response.data.error
+      } finally {
+        this.$forceUpdate()
+        this.render += 1
+      }
+    },
+    async edit () {
+      this.disabled += 1
+    },
+    async save () {
+      this.disabled += 1
+      // try {
+      //   if (this.place.city === null ||
+      //       this.place.city[0] === ' ' ||
+      //       this.place.lenght === 0) {
+      //     alert('Please provide a valid city name')
+      //   } else {
+      //     await LocationService.put(this.place)
+      //     this.$router.push({
+      //       name: 'place',
+      //       params: {
+      //       }
+      //     })
+      //   }
+      // } catch (error) {
+      //   this.error = error.response.data.error
+      // }
+    },
+    async del () {
+      try {
+        await LocationService.del(this.place)
+        this.error = null
+        // this.$router.go('Locations')
+      } catch (error) {
+        this.error = error.response.data.error
+      }
+    },
+    navigateTo (route) {
+      this.$route.go(route)
+    },
+    reRender () {
+      this.render += 1
+    },
+    async mounted () {
+      try {
+        const locId = this.$store.state.route.params.locId
+        this.place = (await LocationService.show(locId)).data
+      } catch (err) {
+        console.log(err)
+      }
+    }
+  // watch: {
+  //   '$route.query.search': {
+  //     immediate: true,
+  //     async handler (value) {
+  //       this.locations = (await LocationService.index(value)).data
+  //     }
+  //   }
+  // },
+  }
+}
+</script>
+
+<style lang="css" scoped>
+.centered-input >>> input{
+  text-align: center
+}
+</style>

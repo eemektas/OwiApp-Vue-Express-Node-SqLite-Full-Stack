@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <v-layout justify-center>
+    <v-layout>
       <v-flex xs10>
-        <br><br>
+        <br><br><br>
         <v-text-field
           dark
           placeholder="City"
@@ -31,7 +31,6 @@
                     <v-text-field
                       type="text"
                       :key="place.id"
-                      :readonly="(disabled + 1) % 2"
                       v-model="place.city">
 
                       <template v-slot:append-outer>
@@ -41,7 +40,7 @@
                             v-if="(disabled + 1) % 2"
                             color="primary"
                             :key="place.name"
-                            @click="edit">
+                            @click:append="edit()">
                             Edit
                           </v-btn>
 
@@ -95,7 +94,6 @@ export default {
       immediate: true,
       handler: async function () {
         this.locations = (await LocationService.index()).data
-        console.log('locss', this.locations)
       }
     }
   },
@@ -116,7 +114,7 @@ export default {
         this.error = error.response.data.error
       }
     },
-    async edit () {
+    edit () {
       this.disabled += 1
     },
     async save () {

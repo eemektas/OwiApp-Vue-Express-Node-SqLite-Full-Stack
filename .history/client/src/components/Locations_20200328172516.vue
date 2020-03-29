@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <v-layout justify-center>
+    <v-layout>
       <v-flex xs10>
-        <br><br>
+        <br><br><br>
         <v-text-field
           dark
           placeholder="City"
@@ -29,25 +29,29 @@
                 <v-list-item-title>
                   <v-container>
                     <v-text-field
+                      class="ma-1 "
                       type="text"
                       :key="place.id"
-                      :readonly="(disabled + 1) % 2"
+                      :disabled="disabled % 2 == 0"
                       v-model="place.city">
 
-                      <template v-slot:append-outer>
+                      <template v-slot:append>
 
                           <v-btn
-                            small
+                            medium
+                            depressed
                             v-if="(disabled + 1) % 2"
                             color="primary"
-                            :key="place.name"
-                            @click="edit">
+                            class="ma-0"
+                            :key="place.name">
+                            @click="edit"
                             Edit
                           </v-btn>
 
                           <v-btn
-                            small
+                            medium
                             v-if="disabled % 2"
+                            small
                             color="success"
                             :key="place.id"
                             v-on:click="save()">
@@ -55,8 +59,9 @@
                           </v-btn>
 
                           <v-btn
-                            small
+                            medium
                             color="error"
+                            class="ma-0"
                             @click="del">
                             Delete
                           </v-btn>
@@ -95,7 +100,6 @@ export default {
       immediate: true,
       handler: async function () {
         this.locations = (await LocationService.index()).data
-        console.log('locss', this.locations)
       }
     }
   },
@@ -116,7 +120,7 @@ export default {
         this.error = error.response.data.error
       }
     },
-    async edit () {
+    edit () {
       this.disabled += 1
     },
     async save () {

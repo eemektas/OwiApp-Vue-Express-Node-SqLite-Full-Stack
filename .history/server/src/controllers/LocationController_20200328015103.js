@@ -32,7 +32,9 @@ module.exports = {
       })
       res.send(req.body)
     } catch (err) {
-      res.send(err)
+      res.status(500).send({
+        error: 'An error has occured trying to update the location'
+      })
     }
   }
 }
