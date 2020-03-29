@@ -1,10 +1,8 @@
 <template>
   <div id="app" >
     <v-app class="bg-no-repeat cover bg-white hero relative"
-    :style="{ backgroundImage: `url(${backgroundUrl})` }">
-
+      :style="{ backgroundImage: `url(${backgroundUrl})` }">
         <page-header />
-
         <main>
           <v-container>
             <router-view></router-view>

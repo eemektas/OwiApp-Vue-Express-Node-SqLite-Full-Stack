@@ -15,14 +15,16 @@
               <v-text-field class="mt-10"
                 dark
                 label="Username"
-                v-model="username">
-                autocomplete="off"
+                v-model="username"
+                @keypress.enter="login"
+                autocomplete="off">
               </v-text-field>
               <v-text-field
                 dark
                 label="Password"
                 type="password"
                 v-model="password"
+                @keypress.enter="register"
                 autocomplete="new-password">
               </v-text-field>
             </v-form>

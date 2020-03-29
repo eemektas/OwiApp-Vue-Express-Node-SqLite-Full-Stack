@@ -16,13 +16,16 @@
                 dark
                 class="mt-10"
                 label="Username"
-                v-model="username">
+                v-model="username"
+                @keypress.enter="login"
+                autocomplete="off">
               </v-text-field>
               <v-text-field
                 dark
                 label="Password"
                 type="password"
                 v-model="password"
+                @keypress.enter="login"
                 autocomplete="new-password">
               </v-text-field>
             </v-form>
@@ -31,8 +34,7 @@
               dark
               x-large
               class="dark mt-10"
-              @click="login"
-              >
+              @click="login">
               Login
             </v-btn>
         </v-flex>
@@ -58,8 +60,7 @@ export default {
           username: this.username,
           password: this.password
         })
-        const token = response.data.token
-        console.log(token)
+        // const token = response.data.token
         this.$store.dispatch('setToken', response.data.token)
         this.$store.dispatch('setUser', response.data.user)
         if (this.$store.state.isUserLoggedIn) {

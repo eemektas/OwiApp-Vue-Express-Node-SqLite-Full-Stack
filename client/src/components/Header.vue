@@ -76,7 +76,10 @@
         v-if="$store.state.isUserLoggedIn"
         text
         dark
-        @click="logout">
+        @click="logout"
+        :to="{
+          name: 'Logout'
+        }">
         Log Out
       </v-btn>
     </v-toolbar>
