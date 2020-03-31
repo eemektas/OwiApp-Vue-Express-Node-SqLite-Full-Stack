@@ -7,7 +7,7 @@ module.exports = {
     options: {
       dialect: process.env.DIALECT || 'sqlite',
       host: process.env.HOST || 'localhost',
-      storage: './owi.sqlite'
+      storage: '../../owi.sqlite'
     }
   },
   auth: {
