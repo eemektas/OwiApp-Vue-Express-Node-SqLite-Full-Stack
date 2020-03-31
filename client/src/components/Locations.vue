@@ -33,7 +33,7 @@
                       :readonly="readO"
                       v-model="place.city">
 
-                      <template v-slot:append-outer>
+                      <template v-slot:append>
 
                           <v-btn
                             small
@@ -49,7 +49,7 @@
                             v-if="disabled % 2"
                             color="success"
                             :key="place.id"
-                            @click="save">
+                            @click="save(place)">
                             Save
                           </v-btn>
 
@@ -97,7 +97,6 @@ export default {
       immediate: true,
       handler: async function () {
         this.locations = (await LocationService.index()).data
-        console.log('locs', this.locations)
       }
     }
   },
@@ -111,7 +110,6 @@ export default {
           return
         } else {
           await LocationService.post(this.place)
-          console.log('thşsoka', this.place)
           this.locations = (await LocationService.index()).data
           this.error = null
         }
@@ -123,13 +121,18 @@ export default {
       this.disabled += 1
       this.readO = false
     },
-    async save () {
-      this.disabled += 1
-      this.readO = true
+    async save (city) {
+      try {
+        await LocationService.put(city)
+        this.locations = (await LocationService.index()).data
+        this.disabled += 1
+        this.readO = true
+      } catch (err) {
+        this.error = err.response.data.error
+      }
     },
     async del (city) {
       try {
-        console.log('here', JSON.parse(JSON.stringify(city.id)))
         await LocationService.delete(city.id)
         this.locations = (await LocationService.index()).data
         this.error = null

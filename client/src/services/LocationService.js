@@ -8,7 +8,7 @@ export default {
     return Api().post('locations', city)
   },
   put (city) {
-    return Api().put('locations', city)
+    return Api().put(`locations/${city.id}`, city)
   },
   delete (city) {
     return Api().delete(`locations/${city}`)
