@@ -130,7 +130,7 @@ export default {
     async del (city) {
       try {
         console.log('here', JSON.parse(JSON.stringify(city.id)))
-        await LocationService.delete(city.id)
+        await LocationService.delete(JSON.parse(JSON.stringify(city)))
         this.locations = (await LocationService.index()).data
         this.error = null
       } catch (error) {

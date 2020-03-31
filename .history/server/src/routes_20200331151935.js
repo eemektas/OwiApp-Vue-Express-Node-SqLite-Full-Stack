@@ -32,7 +32,4 @@ module.exports = (app) => {
 
   app.get('/users',
     AuthController.index)  
-  
-  app.delete('/users/:id',
-    AuthController.remove)
 }

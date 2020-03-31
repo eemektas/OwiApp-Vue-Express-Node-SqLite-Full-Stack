@@ -34,7 +34,6 @@ module.exports = {
   },
   async remove (req, res) {
     try {
-      console.log('userssssss', req.params, req.body)
       const usr = await User.findOne({
         where: {
           id: req.params.id

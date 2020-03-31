@@ -37,9 +37,10 @@ module.exports = {
   },
   async remove (req, res) {
     try {
+      console.log('cityyyyyyyyyy', req.params, req.body, req.query)
       const loc = await Location.findOne({
         where: {
-          id: req.params.id
+          city: req.body.city
         }
       })
       await loc.destroy()

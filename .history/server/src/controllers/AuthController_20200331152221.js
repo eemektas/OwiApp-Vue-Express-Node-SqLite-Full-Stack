@@ -34,14 +34,13 @@ module.exports = {
   },
   async remove (req, res) {
     try {
-      console.log('userssssss', req.params, req.body)
-      const usr = await User.findOne({
+      const loc = await Location.findOne({
         where: {
           id: req.params.id
         }
       })
-      await usr.destroy()
-      res.send(usr)
+      await loc.destroy()
+      res.send(loc)
     } catch (err) {
       res.send(err)
     }

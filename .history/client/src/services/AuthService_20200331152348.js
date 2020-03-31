@@ -10,8 +10,8 @@ export default {
   login (credentials) {
     return Api().post('login', credentials)
   },
-  delete (userId) {
-    return Api().delete(`users/${userId}`)
+  delete (city) {
+    return Api().delete(`locations/${city}`)
   }
 }
 

@@ -2,7 +2,8 @@
 <div id="Users">
    <v-list dark
     style="max-height: 550px; min-height: 50px"
-    class="overflow-y-auto">
+    class="overflow-y-auto"
+    v-repeat="tags">
     <v-list-item
       name="recur"
       v-for="(user, i) in users"
@@ -22,7 +23,7 @@
                   v-if="(disabled + 1) % 2"
                   color="primary"
                   :key="user.id"
-                  >
+                  @click="edit">
                   Edit
                 </v-btn>
 
@@ -91,7 +92,7 @@ export default {
       try {
         console.log('here', JSON.parse(JSON.stringify(user.id)))
         await AuthService.delete(user.id)
-        this.users = (await AuthService.index()).data
+        this.locations = (await AuthService.index()).data
         this.error = null
       } catch (error) {
         this.error = error.response.data.error

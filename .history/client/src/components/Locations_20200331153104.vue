@@ -40,7 +40,7 @@
                             v-if="(disabled + 1) % 2"
                             color="primary"
                             :key="place.name"
-                            @click="edit">
+                            >
                             Edit
                           </v-btn>
 
@@ -49,7 +49,7 @@
                             v-if="disabled % 2"
                             color="success"
                             :key="place.id"
-                            @click="save">
+                            >
                             Save
                           </v-btn>
 

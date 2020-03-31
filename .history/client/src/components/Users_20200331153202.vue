@@ -2,7 +2,8 @@
 <div id="Users">
    <v-list dark
     style="max-height: 550px; min-height: 50px"
-    class="overflow-y-auto">
+    class="overflow-y-auto"
+    v-repeat="tags">
     <v-list-item
       name="recur"
       v-for="(user, i) in users"

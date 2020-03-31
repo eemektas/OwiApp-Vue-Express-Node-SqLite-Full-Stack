@@ -11,6 +11,6 @@ export default {
     return Api().put('locations', city)
   },
   delete (city) {
-    return Api().delete(`locations/${city}`)
+    return Api().delete('locations', city)
   }
 }
