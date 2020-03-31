@@ -32,6 +32,7 @@ module.exports = {
       res.json({
         weatherData: json
       })
+      console.log('reqq', req.body)
     } catch (err) {
       res.send(err)
     }
