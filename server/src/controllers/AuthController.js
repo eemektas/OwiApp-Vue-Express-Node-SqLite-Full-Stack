@@ -1,5 +1,5 @@
-const jwt = require('jsonwebtoken')
 const { User } = require('../models')
+const jwt = require('jsonwebtoken')
 const config = require('../config/config')
 
 function jwtSignUser (user) {
@@ -10,16 +10,6 @@ function jwtSignUser (user) {
 }
 
 module.exports = {
-  async getInfo (req, res) {
-    if (req.session.views) {
-      req.session.views++
-      res.setHeader('Content-Type', 'text/html')
-      res.end()
-    } else {
-      req.session.views = 1
-      res.end('welcome to the session. refresh!')
-    }
-  },
   async index (req, res) {
     try {
       const users = await User.findAll({
@@ -47,9 +37,9 @@ module.exports = {
       const user = await User.create(req.body)
       const userJson = user.toJSON()
       res.send({
-        user: userJson
+        user: userJson,
+        token: jwtSignUser(userJson)
       })
-      req.session.views = 0
     } catch (err) {
       res.status(400).send({
         error: 'This username is already in use.'
@@ -79,13 +69,11 @@ module.exports = {
       }
 
       const userJson = user.toJSON()
-      res.status(200).send({
-        msg: 'Successfully logged in',
+      res.send({
         user: userJson,
         token: jwtSignUser(userJson)
       })
     } catch (err) {
-      console.log(err)
       res.status(500).send({
         error: 'An error has occured while trying to login'
       })
