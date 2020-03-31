@@ -2,7 +2,7 @@
   <div id="Reports">
     <v-card dark class="mt-12">
       <v-card-title>
-        <h2>Weather Reports</h2>
+        <h2>Weather Request Reports</h2>
         <v-spacer></v-spacer>
         <v-text-field
           prepend-inner-icon="fa-search"
