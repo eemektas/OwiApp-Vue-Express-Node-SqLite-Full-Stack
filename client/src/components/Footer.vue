@@ -4,6 +4,7 @@
       <v-footer
         dark
         padless
+        height=50px
       >
         <v-row
           justify="center"
@@ -14,7 +15,7 @@
             text
             rounded
             class="my-2"
-            href="https://github.com/eemektas">
+            to="https://github.com/eemektas">
             <v-icon>fab fa-github</v-icon>
           </v-btn>
           <v-col
