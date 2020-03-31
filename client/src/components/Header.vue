@@ -78,7 +78,7 @@
         dark
         @click="logout"
         :to="{
-          name: 'Logout'
+          name: 'Login'
         }">
         Log Out
       </v-btn>

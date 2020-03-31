@@ -60,21 +60,19 @@
       <div>
         <v-layout row wrap justify-center mt-5>
           <GmapMap
-          style="width: 600px; height: 350px;"
+          style="min-width: 700px; height: 350px;"
           :zoom="7"
           :center="{lat: weatherData.coord.lat, lng: weatherData.coord.lon}">
             <GmapMarker v-for="(marker, index) in markers"
               :key="index"
-              :position="marker.position"
-              />
+              :position="marker.position"/>
             <GmapMarker
               v-if="this.place"
               label="★"
               :position="{
                 lat: weatherData.coord.lat,
                 lng: weatherData.coord.lon,
-              }"
-              />
+              }"/>
         </GmapMap>
         </v-layout>
       </div>
@@ -133,11 +131,6 @@ export default {
         this.error = err.response.data.error
       }
     }
-  },
-  mounted () {
-    this.$refs.mapRef.$mapPromise.then((map) => {
-      map.panTo({lat: this.weatherData.coord.lat, lng: this.weatherData.coord.lon})
-    })
   }
 }
 </script>
