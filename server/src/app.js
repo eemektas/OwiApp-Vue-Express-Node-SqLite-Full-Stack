@@ -2,7 +2,6 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const morgan = require('morgan')
-const fetch = require('node-fetch')
 const { sequelize } = require('./models')
 const config = require('./config/config')
 const session = require('express-session')
@@ -22,6 +21,7 @@ app.use(session({
   saveUninitialized: false,
   resave: false}))
 
+require('./passport')
 require('./routes')(app)
 
 sequelize.sync() // {force: true} in sync func to del all tables

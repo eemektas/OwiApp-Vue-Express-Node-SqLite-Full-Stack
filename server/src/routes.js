@@ -5,9 +5,6 @@ const WeatherController = require('./controllers/WeatherController')
 
 
 module.exports = (app) => {
-  app.get('/register', 
-  AuthController.getInfo)
-
   app.post('/register', 
     AuthControllerPolicy.register,
     AuthController.register)
@@ -20,6 +17,12 @@ module.exports = (app) => {
 
   app.post('/locations',
     LocationController.post)
+
+  // app.put('/locations/:id',
+  //   LocationController.update)
+
+  app.delete('/locations',
+    LocationController.remove)
 
   app.post('/weather',
     WeatherController.post) 
