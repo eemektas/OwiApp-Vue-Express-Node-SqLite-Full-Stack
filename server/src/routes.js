@@ -21,6 +21,9 @@ module.exports = (app) => {
   // app.put('/locations/:id',
   //   LocationController.update)
 
+  app.put('/locations/:id',
+    LocationController.put)
+
   app.delete('/locations/:id',
     LocationController.remove)
 
@@ -33,6 +36,9 @@ module.exports = (app) => {
   app.get('/users',
     AuthController.index)  
   
+  app.put('/users/:id',
+    AuthController.put)
+
   app.delete('/users/:id',
     AuthController.remove)
 }

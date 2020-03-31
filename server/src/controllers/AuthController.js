@@ -22,9 +22,10 @@ module.exports = {
   },
   async put (req, res) {
     try {
+      console.log('userreqqq', req.body, req.params)
       await User.update(req.body, {
         where: {
-          id: req.params.songId
+          id: req.body.id
         }
       })
       res.send(req.body)
@@ -33,8 +34,8 @@ module.exports = {
     }
   },
   async remove (req, res) {
+    console.log('clicked', req.params)
     try {
-      console.log('userssssss', req.params, req.body)
       const usr = await User.findOne({
         where: {
           id: req.params.id

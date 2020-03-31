@@ -10,6 +10,9 @@ export default {
   login (credentials) {
     return Api().post('login', credentials)
   },
+  put (user) {
+    return Api().put(`users/${user.id}`, user)
+  },
   delete (userId) {
     return Api().delete(`users/${userId}`)
   }
