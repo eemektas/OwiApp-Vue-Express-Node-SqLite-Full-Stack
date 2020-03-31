@@ -37,7 +37,7 @@ module.exports = {
   },
   async remove (req, res) {
     try {
-      console.log('cityyyyyyyyyy', req.params, req.body, req.query, req)
+      console.log('cityyyyyyyyyy', req.params)
       const loc = await Location.findOne({
         where: {
           city: req.body.city

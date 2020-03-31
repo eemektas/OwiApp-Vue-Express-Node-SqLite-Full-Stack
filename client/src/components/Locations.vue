@@ -22,8 +22,8 @@
             class="overflow-y-auto">
             <v-list-item
               name="recur"
-              v-for="place in locations"
-              v-bind:key="place.id">
+              v-for="(place, i) in locations"
+              :key="i">
               <v-list-item-content>
                 <v-list-item-title>
                   <v-container>
@@ -49,14 +49,16 @@
                             v-if="disabled % 2"
                             color="success"
                             :key="place.id"
-                            v-on:click="save()">
+                            @click="save">
                             Save
                           </v-btn>
 
                           <v-btn
                             small
                             color="error"
-                            @click="del">
+                            value="city"
+                            :key="i"
+                            @click="del(place)">
                             Delete
                           </v-btn>
                       </template>
@@ -95,6 +97,7 @@ export default {
       immediate: true,
       handler: async function () {
         this.locations = (await LocationService.index()).data
+        console.log('locs', this.locations)
       }
     }
   },
@@ -108,6 +111,7 @@ export default {
           return
         } else {
           await LocationService.post(this.place)
+          console.log('thşsoka', this.place)
           this.locations = (await LocationService.index()).data
           this.error = null
         }
@@ -123,10 +127,11 @@ export default {
       this.disabled += 1
       this.readO = true
     },
-    async del () {
+    async del (city) {
       try {
-        console.log('here', this.place)
-        await LocationService.del(this.place)
+        console.log('here', city)
+        await LocationService.remove(city)
+        this.locations = (await LocationService.index()).data
         this.error = null
       } catch (error) {
         this.error = error.response.data.error

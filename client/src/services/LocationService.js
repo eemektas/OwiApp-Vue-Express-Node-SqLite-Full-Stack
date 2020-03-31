@@ -10,7 +10,7 @@ export default {
   put (city) {
     return Api().put('locations', city)
   },
-  del (city) {
+  remove (city) {
     return Api().delete('locations', city)
   }
 }

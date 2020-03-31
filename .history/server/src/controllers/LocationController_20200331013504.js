@@ -16,6 +16,7 @@ module.exports = {
   async post (req, res) {
     try {
       const location = await Location.create(req.body)
+      console.log('locreq', req.body)
       res.send(location)
     } catch (err) {
       res.status(500).send({
@@ -37,10 +38,10 @@ module.exports = {
   },
   async remove (req, res) {
     try {
-      console.log('cityyyyyyyyyy', req.params, req.body, req.query, req)
+      console.log('cityyyyyyyyyy', req.params, req.body)
       const loc = await Location.findOne({
         where: {
-          city: req.body.city
+          city: city
         }
       })
       await loc.destroy()

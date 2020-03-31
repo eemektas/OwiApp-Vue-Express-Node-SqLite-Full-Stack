@@ -35,12 +35,11 @@ module.exports = {
       res.send(err)
     }
   },
-  async remove (req, res) {
+  async del (req, res) {
     try {
-      console.log('cityyyyyyyyyy', req.params, req.body, req.query, req)
-      const loc = await Location.findOne({
+      const loc = await Location.findOne(req.body, {
         where: {
-          city: req.body.city
+          city: req.params.city
         }
       })
       await loc.destroy()
