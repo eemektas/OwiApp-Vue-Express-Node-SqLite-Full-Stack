@@ -29,5 +29,7 @@ Online Weather Inquiry - An elementary weather app works with OpenWeatherMap
 - **4.** Finally, OwiApp can be found at http://localhost:8080. Have Fun!!
 
    ![owidemo](https://imgur.com/ENUuB5m)
+   
+   ![Imgur](https://i.imgur.com/ENUuB5m.png)
 
    ![funfun](https://media.giphy.com/media/60rskmX9GAyMwBMHJF/giphy.gif)
